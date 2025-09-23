@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="400" viewBox="0 0 1000 400" aria-hidden="true">
+    <style>
+        .heavy {
+        font-weight: bold;
+        }
+
+        /* Note that the color of the text is set with the *
+        * fill property, the color property is for HTML only */
+        .Rrrrr {
+        font: italic 40px serif;
+        fill: red;
+        }
+    </style>
+    <defs>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.10"/>
+        </filter>
+    </defs>
+
+    <rect width="1000" height="400" rx="16" ry="16"
+          fill="#ffffff" fill-opacity="0.11"
+          stroke="#ffffff" stroke-opacity="0.3" stroke-width="1"
+          filter="url(#shadow)"/>
+
+    <!--    #CC634E-->
+    <!--    #CC4E78-->
+    <!--    #CCA24E-->
+
+    <text class="heavy" font-family="monospace" x="50" y="50" fill="#CCA24E" font-size="45" style="test:bold">
+        spring-postman-request-generator
+        <!--        {{PLUGIN_NAME}}-->
+    </text>
+    <text class="heavy" font-family="monospace" x="50" y="110" fill="#CC4E78" font-size="40">
+        Vendor:
+    </text>
+    <text font-family="monospace" x="300" y="110" fill="#" font-size="40">
+
+        Ferdinand Strobel
+        <!--        {{VENDOR}}-->
+    </text>
+    <text class="heavy" font-family="monospace" x="50" y="160" fill="#CC4E78" font-size="40">
+        Downloads:
+    </text>
+    <text font-family="monospace" x="300" y="160" fill="#" font-size="40">
+        255
+        <!--        {{DOWNLOADS}}-->
+    </text>
+    <text class="heavy" font-family="monospace" x="50" y="210" fill="#CC4E78" font-size="40">
+        Version:
+    </text>
+    <text font-family="monospace" x="300" y="210" fill="#" font-size="40">
+        0.6.0
+        <!--        {{VERSION}}-->
+    </text>
+
+</svg>

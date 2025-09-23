@@ -1,3 +1,9 @@
+// MARKETPLACE_ID need to be set 
+
+use std::env;
+
 fn main() {
-    println!("Hello, world!");
+    let key = "MARKETPLACE_ID";
+    let val = env::var(key).unwrap();
+    println!("{}: {:?}", key, val); 
 }
