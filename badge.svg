@@ -2,29 +2,67 @@
     <style>
         .heavy {
         font-weight: bold;
-        }
-
-        /* Note that the color of the text is set with the *
-        * fill property, the color property is for HTML only */
-        .Rrrrr {
-        font: italic 40px serif;
-        fill: red;
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.5rem;
         }
     </style>
+
     <defs>
-        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.10"/>
+        <filter id="glass" x="-10%" y="-10%" width="120%" height="120%">
+
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+
+            <feTurbulence type="fractalNoise"
+                          baseFrequency="0.9"
+                          numOctaves="1"
+                          seed="3"
+                          result="noise"/>
+
+            <feColorMatrix type="saturate" values="0" in="noise" result="noiseGray"/>
+
+            <feComposite in="noiseGray" in2="SourceAlpha" operator="in" result="noiseClipped"/>
+
+
+            <feBlend in="blur" in2="noiseClipped" mode="overlay" result="glassBase"/>
+
+            <feSpecularLighting in="noiseClipped"
+                                surfaceScale="3"
+                                specularConstant="1.2"
+                                specularExponent="20"
+                                lighting-color="#ffffff"
+                                result="lightRaw">
+                <fePointLight x="120" y="80" z="200" />
+            </feSpecularLighting>
+
+            <feComposite in="lightRaw" in2="SourceAlpha" operator="in" result="light"/>
+
+            <feBlend in="glassBase" in2="light" mode="screen" result="glassLit"/>
+
+            <feColorMatrix type="matrix"
+                           values="1 0 0 0 0
+                               0 1 0 0 0
+                               0 0 1 0 0
+                               0 0 0 0.55 0"
+                           in="glassLit"
+                           result="glassFinal"/>
+
+            <feMerge>
+                <feMergeNode in="glassFinal"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+
         </filter>
     </defs>
 
-    <rect width="1000" height="400" rx="16" ry="16"
-          fill="#ffffff" fill-opacity="0.11"
-          stroke="#ffffff" stroke-opacity="0.3" stroke-width="1"
-          filter="url(#shadow)"/>
+    <rect x="10"  width="800" height="250" rx="20"
+          fill="rgb(101,109,107, 0.1)"
+          stroke-width="2"
+          stroke="rgba(221, 221, 245, 0.2)"
+          filter="url(#glass)"/>
 
-    <!--    #CC634E-->
-    <!--    #CC4E78-->
-    <!--    #CCA24E-->
+
+
+
 
     <text class="heavy" font-family="monospace" x="50" y="50" fill="#CCA24E" font-size="45" style="test:bold">
         spring-postman-request-generator
@@ -33,7 +71,7 @@
     <text class="heavy" font-family="monospace" x="50" y="110" fill="#CC4E78" font-size="40">
         Vendor:
     </text>
-    <text font-family="monospace" x="300" y="110" fill="#" font-size="40">
+    <text font-family="monospace" x="300" y="110" fill="#fff" font-size="40">
 
         Ferdinand Strobel
         <!--        {{VENDOR}}-->
@@ -41,14 +79,14 @@
     <text class="heavy" font-family="monospace" x="50" y="160" fill="#CC4E78" font-size="40">
         Downloads:
     </text>
-    <text font-family="monospace" x="300" y="160" fill="#" font-size="40">
+    <text font-family="monospace" x="300" y="160" fill="#fff" font-size="40">
         255
         <!--        {{DOWNLOADS}}-->
     </text>
     <text class="heavy" font-family="monospace" x="50" y="210" fill="#CC4E78" font-size="40">
         Version:
     </text>
-    <text font-family="monospace" x="300" y="210" fill="#" font-size="40">
+    <text font-family="monospace" x="300" y="210" fill="#fff" font-size="40">
         0.6.0
         <!--        {{VERSION}}-->
     </text>
