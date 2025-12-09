@@ -4,3 +4,12 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter", "time"] }
+reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+quick-xml = { version = "0.27", features = ["serialize"] }
+serde = { version = "1.0", features = ["derive"] }
+same-file = "1.0.6"
+ramhorns = "1.0.0"
+log = "0.4.29"
