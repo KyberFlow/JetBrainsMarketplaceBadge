@@ -5,7 +5,7 @@ use crate::file_writer::save_svg;
 use crate::generate::GenerateInfo;
 use quick_xml::de::from_str;
 use reqwest::Url;
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize};
 use std::env;
 use tracing_subscriber::EnvFilter;
 
@@ -89,7 +89,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let plugin_repro: PluginRepository = match from_str(&body) {
         Ok(info) => info,
         Err(e) => {
-            let plugin_info: PluginRepository = match from_str(&body) {
+            let _plugin_info: PluginRepository = match from_str(&body) {
                 Ok(info) => info,
                 Err(e) => {
                     tracing::error!(error = ?e, "Failed to parse XML response");
@@ -118,10 +118,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         name: idea_plugin.name.clone(),
     };
 
-    let renderedSvg = generate::generate(&generate_info, svg_style);
+    let rendered_svg = generate::generate(&generate_info, svg_style);
 
-    tracing::trace!(renderedSvg);
-    save_svg(renderedSvg, svg_output_name);
+    tracing::trace!(rendered_svg);
+    save_svg(rendered_svg, svg_output_name);
 
     Ok(())
 }

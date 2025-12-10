@@ -1,0 +1,38 @@
+name: Generate Stats Image
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: "30 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build and Push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+        # Set up Cargo and Rust
+      - name: Set up Rust
+        uses: moonrepo/setup-rust@v1
+        run: cargo -v
+
+        # Generate Badge
+      - name: Generate Stats Image
+        run: ./build.sh
+        env:
+          MARKETPLACE_ID: ${{ secrets.MARKETPLACE_ID }}
+          DEBUG: ${{ secrets.DEBUG }}
+
+        # Commit the generated image
+      - name: Commit generated images
+        run: |
+          git config --global user.name "FerdiStro"
+          git config --global user.email "JetBrainsMarketPlace[bot]@FerdiStro.github.io"
+          git add .
+          git commit -m 'Update Badge' || true
+          git push

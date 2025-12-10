@@ -1,7 +1,6 @@
 use log::{error, info};
 use std::fs::File;
 use std::io::Write;
-use tokio::io::AsyncWriteExt;
 
 pub fn save_svg(content_as_string: String, output_file_path: &str) {
     let file = File::create(output_file_path);

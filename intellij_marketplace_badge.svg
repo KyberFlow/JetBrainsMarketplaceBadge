@@ -77,13 +77,13 @@
         Downloads:
     </text>
     <text font-family="monospace" x="300" y="160" fill="#fff" font-size="40">
-        1184
+        1204
     </text>
     <text class="heavy" font-family="monospace" x="50" y="210" fill="#CC4E78" font-size="40">
         Version:
     </text>
     <text font-family="monospace" x="300" y="210" fill="#fff" font-size="40">
-      0.6.1
+      0.1.0
     </text>
 
 </svg>
